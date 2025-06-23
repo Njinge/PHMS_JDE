@@ -35,7 +35,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")  # Set this in your .env file and never com
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['phms-jde.onrender.com']
 
 
 # Application definition
