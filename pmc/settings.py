@@ -1,3 +1,8 @@
+# filepath: /Users/njingejeo/Documents/CCMC PMC/pmc/settings.py
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 """
 Django settings for pmc project.
 
@@ -25,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-rajdc$^-*a%0rgq7msb#r&=_uh5qg6ckz&x-hnpiaia(e^&w7i"
+SECRET_KEY = os.getenv("SECRET_KEY")  # Set this in your .env file and never commit it
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,14 +83,19 @@ WSGI_APPLICATION = "pmc.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("DB_NAME", "pmcdb"),
-        "USER": os.getenv("DB_USER", "pmcuser"),
-        "PASSWORD": os.getenv("DB_PASSWORD", "pmcpassword"),
-        "HOST": os.getenv("DB_HOST", "localhost"),
-        "PORT": os.getenv("DB_PORT", "5432"),
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"), 
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
     }
 }
 
@@ -130,8 +140,6 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-SECRET_KEY = os.getenv("SECRET_KEY", SECRET_KEY)
 
 # --- Security Hardening ---
 SECURE_BROWSER_XSS_FILTER = True

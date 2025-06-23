@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/Users/njingejeo/Documents/CCMC PMC/venv/bin/python3" "$0" "$@"
+'''exec' "/Users/njingejeo/Documents/CCMC PMC/venv/bin/python" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re

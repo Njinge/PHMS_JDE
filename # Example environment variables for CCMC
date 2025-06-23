@@ -1,0 +1,12 @@
+# Example environment variables for CCMC PMC Django project
+# Copy this file to .env and fill in your real secrets (never commit .env)
+
+# Django secret key
+SECRET_KEY=your-django-secret-key
+
+# PostgreSQL database credentials
+DB_NAME=your_db_name
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_HOST=localhost
+DB_PORT=5432

@@ -5,7 +5,8 @@ import os
 Base = declarative_base()
 
 # SQLAlchemy engine and session
-DATABASE_URL = f"postgresql+psycopg2://{os.getenv('DB_USER', 'pmcuser')}:{os.getenv('DB_PASSWORD', 'pmcpassword')}@{os.getenv('DB_HOST', 'localhost')}:{os.getenv('DB_PORT', '5432')}/{os.getenv('DB_NAME', 'pmcdb')}"
+# Set DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME in your .env file and never commit it
+DATABASE_URL = f"postgresql+psycopg2://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
