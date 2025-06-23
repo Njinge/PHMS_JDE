@@ -5,3 +5,4 @@ cryptography>=41.0
 gunicorn
 python-dotenv
 werkzeug
+dj-database-url
