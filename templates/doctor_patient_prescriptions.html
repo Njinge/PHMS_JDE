@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container fade-in mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h2 class="fw-bold mb-4 text-center"><i class="fa-solid fa-prescription-bottle-medical text-warning me-2"></i>Patient Prescriptions</h2>
+                    {% if prescriptions %}
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Medication</th>
+                                        <th>Dosage</th>
+                                        <th>Instructions</th>
+                                        <th>Date</th>
+                                        <th>Doctor</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in prescriptions %}
+                                    <tr class="animate__animated animate__fadeInUp">
+                                        <td>{{ p.medication }}</td>
+                                        <td>{{ p.dosage }}</td>
+                                        <td>{{ p.instructions }}</td>
+                                        <td>{{ p.date|date:'Y-m-d H:i' }}</td>
+                                        <td>{{ p.doctor.full_name }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info text-center">No prescriptions found.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

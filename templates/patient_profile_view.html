@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4 fade-in" style="max-width: 600px; width: 100%;">
+        <div class="text-center mb-4">
+            <i class="fa-solid fa-user-circle fa-3x text-primary mb-2"></i>
+            <h2 class="fw-bold">Patient Profile</h2>
+        </div>
+        <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item"><strong>Full Name:</strong> {{ profile.full_name }}</li>
+            <li class="list-group-item"><strong>Date of Birth:</strong> {{ profile.date_of_birth }}</li>
+            <li class="list-group-item"><strong>Address:</strong> {{ profile.address }}</li>
+            <li class="list-group-item"><strong>Phone:</strong> {{ profile.phone }}</li>
+        </ul>
+        <div class="d-flex justify-content-center gap-2">
+            <a href="{% url 'doctor_patient_medical_history' profile.id %}" class="btn btn-outline-info btn-animated">Medical History</a>
+            <a href="{% url 'doctor_patient_lab_results' profile.id %}" class="btn btn-outline-success btn-animated">Lab Results</a>
+            <a href="{% url 'doctor_patient_prescriptions' profile.id %}" class="btn btn-outline-warning btn-animated">Prescriptions</a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

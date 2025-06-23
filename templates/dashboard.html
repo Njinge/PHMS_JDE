@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center mt-5 g-4">
+    <div class="col-12 text-center mb-4">
+        <h1 class="fw-bold display-5">Welcome to Your Dashboard</h1>
+        <p class="lead">Access your features below</p>
+    </div>
+    {% if role == 'patient' %}
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 btn-animated">
+                <div class="card-body text-center">
+                    <i class="fa-solid fa-user-pen fa-2x mb-3 text-primary"></i>
+                    <h5 class="card-title">Profile</h5>
+                    <p class="card-text">View and update your personal information.</p>
+                    <a href="{% url 'patient_profile' %}" class="btn btn-outline-primary btn-animated">Profile</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 btn-animated">
+                <div class="card-body text-center">
+                    <i class="fa-solid fa-vials fa-2x mb-3 text-success"></i>
+                    <h5 class="card-title">Lab Results</h5>
+                    <p class="card-text">Check your latest lab results.</p>
+                    <a href="{% url 'patient_lab_results' %}" class="btn btn-outline-success btn-animated">Lab Results</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 btn-animated">
+                <div class="card-body text-center">
+                    <i class="fa-solid fa-prescription-bottle-medical fa-2x mb-3 text-warning"></i>
+                    <h5 class="card-title">Prescriptions</h5>
+                    <p class="card-text">View your prescriptions and instructions.</p>
+                    <a href="{% url 'patient_prescriptions' %}" class="btn btn-outline-warning btn-animated">Prescriptions</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 btn-animated mt-4">
+                <div class="card-body text-center">
+                    <i class="fa-solid fa-notes-medical fa-2x mb-3 text-info"></i>
+                    <h5 class="card-title">Medical History</h5>
+                    <p class="card-text">Review your medical records and history.</p>
+                    <a href="{% url 'patient_medical_history' %}" class="btn btn-outline-info btn-animated">Medical History</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 btn-animated mt-4">
+                <div class="card-body text-center">
+                    <i class="fa-solid fa-calendar-plus fa-2x mb-3 text-secondary"></i>
+                    <h5 class="card-title">Book Appointment</h5>
+                    <p class="card-text">Schedule a new appointment with a doctor.</p>
+                    <a href="{% url 'book_appointment' %}" class="btn btn-outline-secondary btn-animated">Book Appointment</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 btn-animated mt-4">
+                <div class="card-body text-center">
+                    <i class="fa-solid fa-calendar-check fa-2x mb-3 text-dark"></i>
+                    <h5 class="card-title">My Appointments</h5>
+                    <p class="card-text">See your upcoming and past appointments.</p>
+                    <a href="{% url 'patient_appointments' %}" class="btn btn-outline-dark btn-animated">Appointments</a>
+                </div>
+            </div>
+        </div>
+    {% elif role == 'doctor' %}
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 btn-animated">
+                <div class="card-body text-center">
+                    <i class="fa-solid fa-calendar-check fa-2x mb-3 text-primary"></i>
+                    <h5 class="card-title">Appointments</h5>
+                    <p class="card-text">Manage your appointments with patients.</p>
+                    <a href="{% url 'doctor_appointments' %}" class="btn btn-outline-primary btn-animated">Appointments</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 btn-animated">
+                <div class="card-body text-center">
+                    <i class="fa-solid fa-users fa-2x mb-3 text-success"></i>
+                    <h5 class="card-title">Patients</h5>
+                    <p class="card-text">View and search your patients.</p>
+                    <a href="{% url 'doctor_patients' %}" class="btn btn-outline-success btn-animated">Patients</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %} 

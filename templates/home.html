@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-5 fade-in text-center" style="max-width: 600px; width: 100%;">
+        <i class="fa-solid fa-hospital-user fa-4x text-primary mb-3 animate__animated animate__pulse animate__infinite"></i>
+        <h1 class="fw-bold mb-3">Welcome to JDE Patient Management System</h1>
+        <p class="lead mb-4">A secure, modern platform for managing patient and doctor interactions, medical records, and more.</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{% url 'login' %}" class="btn btn-primary btn-lg btn-animated"><i class="fa-solid fa-sign-in-alt me-2"></i>Login</a>
+            <a href="{% url 'register' %}" class="btn btn-success btn-lg btn-animated"><i class="fa-solid fa-user-plus me-2"></i>Register</a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

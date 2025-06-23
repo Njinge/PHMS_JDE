@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container fade-in mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h2 class="fw-bold mb-4 text-center"><i class="fa-solid fa-calendar-check text-dark me-2"></i>My Appointments</h2>
+                    {% if appointments %}
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Doctor</th>
+                                        <th>Reason</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for a in appointments %}
+                                    <tr class="animate__animated animate__fadeInUp">
+                                        <td>{{ a.appointment_time|date:'Y-m-d H:i' }}</td>
+                                        <td>{{ a.doctor.full_name }}</td>
+                                        <td>{{ a.reason }}</td>
+                                        <td><span class="badge bg-secondary">{{ a.status|title }}</span></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info text-center">No appointments found.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

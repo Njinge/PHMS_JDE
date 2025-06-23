@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container fade-in mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h2 class="fw-bold mb-4 text-center"><i class="fa-solid fa-calendar-check text-primary me-2"></i>My Appointments</h2>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                    {% if appointments %}
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Patient</th>
+                                        <th>Reason</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for a in appointments %}
+                                    <tr class="animate__animated animate__fadeInUp">
+                                        <td>{{ a.appointment_time|date:'Y-m-d H:i' }}</td>
+                                        <td>{{ a.patient.full_name }}</td>
+                                        <td>{{ a.reason }}</td>
+                                        <td><span class="badge bg-secondary">{{ a.status|title }}</span></td>
+                                        <td>
+                                            <form method="post" style="display:inline;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="appointment_id" value="{{ a.id }}">
+                                                <select name="action" class="form-select form-select-sm d-inline w-auto">
+                                                    <option value="confirmed" {% if a.status == 'confirmed' %}selected{% endif %}>Confirm</option>
+                                                    <option value="completed" {% if a.status == 'completed' %}selected{% endif %}>Complete</option>
+                                                    <option value="cancelled" {% if a.status == 'cancelled' %}selected{% endif %}>Cancel</option>
+                                                </select>
+                                                <button type="submit" class="btn btn-sm btn-outline-primary btn-animated ms-1">Update</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info text-center">No appointments found.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

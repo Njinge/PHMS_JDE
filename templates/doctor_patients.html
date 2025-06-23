@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container fade-in mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg">
+                <div class="card-body">
+                    <h2 class="fw-bold mb-4 text-center"><i class="fa-solid fa-users text-success me-2"></i>Patients</h2>
+                    <form method="get" class="mb-3">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search by name" value="{{ query }}">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+                    {% if patients %}
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Date of Birth</th>
+                                        <th>Phone</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for p in patients %}
+                                    <tr class="animate__animated animate__fadeInUp">
+                                        <td>{{ p.full_name }}</td>
+                                        <td>{{ p.date_of_birth }}</td>
+                                        <td>{{ p.phone }}</td>
+                                        <td>
+                                            <a href="{% url 'patient_profile_view' p.id %}" class="btn btn-sm btn-outline-primary btn-animated">View</a>
+                                            <a href="{% url 'doctor_patient_medical_history' p.id %}" class="btn btn-sm btn-outline-info btn-animated">History</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info text-center">No patients found.</div>
+                    {% endif %}
+                    <a href="{% url 'dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
